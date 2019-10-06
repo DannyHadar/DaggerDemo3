@@ -27,7 +27,7 @@ public class MoviesAdapter extends ListAdapter<Movie, MoviesAdapter.MoviesVh> {
     private final RequestManager mRequestManager;
 
     @Inject
-    MoviesAdapter(LayoutInflater inflater, int resource, RequestManager requestManager, @Named("image_url_format") String imageUrlPattern) {
+    MoviesAdapter(LayoutInflater inflater,@Named("movies_layout_resource") int resource, RequestManager requestManager, @Named("image_url_format") String imageUrlPattern) {
         super(new MyDiffCallBack());
 
         mInflater = inflater;

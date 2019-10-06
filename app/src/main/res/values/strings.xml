@@ -3,9 +3,10 @@
 
     <string name="movies_api_base_url">https://api.themoviedb.org/3/</string>
     <string name="images_url_format">https://image.tmdb.org/t/p/w300%1$s</string>
-    <string name="movies_api_key">api id here</string>
+    <string name="movies_api_key">api key here</string>
 
     <string name="enter_movie">Enter movie</string>
     <string name="search">Search</string>
     <string name="results_format">%1$d results</string>
+    <string name="dude_enter_a_movie">Dude, enter a movie</string>
 </resources>

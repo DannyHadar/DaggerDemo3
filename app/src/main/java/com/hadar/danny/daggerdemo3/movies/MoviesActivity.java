@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.hadar.danny.daggerdemo3.R;
+import com.hadar.danny.daggerdemo3.ViewModelsFactory;
 import com.hadar.danny.daggerdemo3.api.models.ApiResponse;
 import com.hadar.danny.daggerdemo3.api.models.Movie;
 import com.hadar.danny.daggerdemo3.api.models.MoviesResult;
@@ -38,7 +39,7 @@ public class MoviesActivity extends DaggerAppCompatActivity {
     @Inject
     MoviesAdapter mMoviesAdapter;
     @Inject
-    MoviesViewModelFactory mMoviesViewModelFactory;
+    ViewModelsFactory mViewModelsFactory;
 
     private MoviesViewModel mMoviesViewModel;
 
@@ -59,7 +60,7 @@ public class MoviesActivity extends DaggerAppCompatActivity {
     }
 
     private void initViewModel() {
-        mMoviesViewModel = ViewModelProviders.of(this, mMoviesViewModelFactory).get(MoviesViewModel.class);
+        mMoviesViewModel = ViewModelProviders.of(this, mViewModelsFactory).get(MoviesViewModel.class);
         mMoviesViewModel.apiResponse().observe(this, this::processApiResponse);
     }
 
@@ -97,7 +98,11 @@ public class MoviesActivity extends DaggerAppCompatActivity {
     void onSearchMoviesButtonClicked() {
         String moviesQuery = mMoviesQueryEt.getText().toString();
 
-        mMoviesViewModel.fetchMoviesClicked(moviesQuery);
-        SoftKeyboardUtils.hideKeyBoard(this);
+        if (!moviesQuery.isEmpty()) {
+            mMoviesViewModel.fetchMoviesClicked(moviesQuery);
+            SoftKeyboardUtils.hideKeyBoard(this);
+        } else {
+            Toast.makeText(this, getString(R.string.dude_enter_a_movie), Toast.LENGTH_SHORT).show();
+        }
     }
 }

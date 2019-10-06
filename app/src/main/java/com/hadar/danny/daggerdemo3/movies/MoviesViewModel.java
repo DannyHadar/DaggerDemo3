@@ -4,6 +4,8 @@ import com.hadar.danny.daggerdemo3.api.MoviesDataSource;
 import com.hadar.danny.daggerdemo3.api.models.ApiResponse;
 import com.hadar.danny.daggerdemo3.api.models.MoviesResult;
 
+import javax.inject.Inject;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -19,9 +21,10 @@ public class MoviesViewModel extends ViewModel {
     private final MoviesDataSource mMoviesDataSource;
     private final CompositeDisposable mDisposables;
 
-    MoviesViewModel(MoviesDataSource moviesDataSource, CompositeDisposable disposables) {
+    @Inject
+    MoviesViewModel(MoviesDataSource moviesDataSource) {
+        mDisposables = new CompositeDisposable();
         mMoviesDataSource = moviesDataSource;
-        mDisposables = disposables;
     }
 
     LiveData<ApiResponse<MoviesResult>> apiResponse() {

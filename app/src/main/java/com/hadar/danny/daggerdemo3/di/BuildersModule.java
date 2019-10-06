@@ -7,11 +7,6 @@ import dagger.android.ContributesAndroidInjector;
 
 @Module
 public abstract class BuildersModule {
-
-    @ContributesAndroidInjector(modules = {
-            MoviesViewModelModule.class,
-            ApiModule.class,
-            MoviesAdapterModule.class
-    })
+    @ContributesAndroidInjector(modules = MoviesModule.class)
     abstract MoviesActivity contributeMoviesActivity();
 }
